@@ -1,13 +1,15 @@
-import React from 'react';
-import {StateProps} from './Todo';
+import React, {useContext} from 'react';
+import {MyContext, StateProps} from './MyProvider';
 
 interface IProps {
+  key: number;
   todo: StateProps;
-  changeTodo: (id: number) => void;
 }
-const TodoItem = ({todo, changeTodo}: IProps) => {
+const TodoItem = ({todo}: IProps) => {
+  const {handleChangeTodoList} = useContext(MyContext);
+
   const handleChange = () => {
-    changeTodo(todo.id);
+    handleChangeTodoList(todo.id);
   };
 
   const spanStyle = {

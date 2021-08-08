@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
-import {StateProps} from './Todo';
-interface IProps {
-  addTodo: (todo: StateProps) => void;
-}
-const TodoInput = ({addTodo}: IProps) => {
+import React, {useState, useContext} from 'react';
+import {MyContext} from './MyProvider';
+
+const TodoInput = () => {
   const [todoText, setTodoText] = useState('');
+
+  const {handleAddTodoList} = useContext(MyContext);
+
   const handleTodoAdd = () => {
-    addTodo({
+    handleAddTodoList({
       id: Date.now(),
       text: todoText,
       isFinished: false
